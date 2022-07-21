@@ -21,16 +21,20 @@ function Searched() {
 
   return (
     <Grid>
-      {searchedReciped.map((item) => {
-        return (
-          <Card key={item.id}>
-            <Link to={"/recipe/" + item.id}>
-              <img src={item.image} alt={item.title} />
-              <h4>{item.title}</h4>
-            </Link>
-          </Card>
-        );
-      })}
+      {searchedReciped.length ? (
+        searchedReciped.map((item) => {
+          return (
+            <Card key={item.id}>
+              <Link to={"/recipe/" + item.id}>
+                <img src={item.image} alt={item.title} />
+                <h4>{item.title}</h4>
+              </Link>
+            </Card>
+          );
+        })
+      ) : (
+        <NoItem>Not Found</NoItem>
+      )}
     </Grid>
   );
 }
@@ -54,4 +58,8 @@ const Card = styled.div`
   }
 `;
 
+const NoItem = styled.h3`
+  text-align: center;
+  color: crimson;
+`;
 export default Searched;

@@ -32,3 +32,10 @@ h3 {
 a {
   color: rgb(56, 56, 56);
 }
+@media only screen and (min-width: 0px) and (max-width: 600px) {
+  h3 {
+    font-size: 1rem;
+    line-height: 2rem;
+  }
+ 
+}

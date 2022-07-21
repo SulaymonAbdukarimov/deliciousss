@@ -7,6 +7,23 @@ import { Link } from "react-router-dom";
 
 function Popular() {
   const [popular, setPopular] = useState([]);
+  const [size, setSize] = useState(4);
+
+  let update = () => {
+    if (window.innerWidth > 950) {
+      setSize(4);
+    } else if (window.innerWidth < 950 && window.innerWidth > 750) {
+      setSize(3);
+    } else if (window.innerWidth < 750 && window.innerWidth > 400) {
+      setSize(2);
+    } else if (window.innerWidth < 400) {
+      setSize(1);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", update);
+  }, [size]);
 
   const getPopular = async () => {
     let check = localStorage.getItem("popular");
@@ -32,7 +49,7 @@ function Popular() {
         <h3>Popular Picks</h3>
         <Splide
           options={{
-            perPage: 4,
+            perPage: size,
             arrows: false,
             gap: "5rem",
             drag: "free",

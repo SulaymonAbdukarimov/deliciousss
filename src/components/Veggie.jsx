@@ -7,6 +7,21 @@ import { Link } from "react-router-dom";
 
 function Veggie() {
   const [veggie, setVeggie] = useState([]);
+  const [size, setSize] = useState(3);
+
+  let update = () => {
+    if (window.innerWidth > 950) {
+      setSize(3);
+    } else if (window.innerWidth < 950 && window.innerWidth > 500) {
+      setSize(2);
+    } else if (window.innerWidth < 500) {
+      setSize(1);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", update);
+  }, [size]);
 
   const getVeggie = async () => {
     let check = localStorage.getItem("veggie");
@@ -32,7 +47,7 @@ function Veggie() {
         <h3>Our Vegetarian Picks</h3>
         <Splide
           options={{
-            perPage: 3,
+            perPage: size,
             arrows: false,
             gap: "5rem",
             drag: "free",

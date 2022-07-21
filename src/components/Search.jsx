@@ -22,6 +22,7 @@ function Search() {
           type="text"
         />
       </div>
+      
     </FormStyle>
   );
 }
